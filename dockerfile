@@ -7,11 +7,11 @@ RUN apt-get update && \
     python3 -m pip install --upgrade pip && \
     pip3 install daphne 
 
-COPY . /opt/HNG-SERVER-TASK-API
+COPY . /opt/HNG-SERVER-TASK
 WORKDIR /opt/HNG-SERVER-TASK
-RUN pip3 install -r /opt/HNG-SERVER-TASK-API/requirements.txt
+RUN pip3 install -r /opt/HNG-SERVER-TASK/requirements.txt
 RUN pip3 install psycopg2
-WORKDIR /opt/HNG-SERVER-TASK-API/task_site
+WORKDIR /opt/HNG-SERVER-TASK/task_site
 RUN python3 manage.py collectstatic
 EXPOSE 9180
 

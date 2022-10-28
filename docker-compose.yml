@@ -1,0 +1,18 @@
+version: '3'
+services:
+    
+  api: 
+    build: .
+    image: &task_site task_site
+    container_name: task_site
+    restart: on-failure
+    command: ["gunicorn", "-b", "0.0.0.0:9180", "task_site.asgi:app"]
+    ports:
+      - 9180:9180
+    volumes:
+      - data-vol:/opt/HNG-SERVER-TASK/task_site/data-vol
+    env_file:
+      - ./task_site/.env
+
+volumes:
+  data-vol:
